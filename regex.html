@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>regex</title>
+  <style>
+     .container{
+      border: 2px solid pink;
+      width: 50%;
+      height: 80vh;
+      background-color: pink;
+      border-radius: 20%;
+      margin-top: 4%;
+      
+     }
+     .username{
+      margin-top: 4%;
+     }
+    
+    
+  </style>
+</head>
+<body>
+  <center>
+    
+    <h2>ENTER YOUR DETAILS</h2>
+    <div class="container">
+
+      <form id="Form" onsubmit="return validateUserInfoForm()">
+        
+        <div class="username">
+
+          <label for="username" >Username (Alphanumeric, 6-12 characters):</label><br>
+          <input type="text" class="username" name="username" required ><br><br>
+          
+          
+          <label for="email">Email (example@example.com):</label><br><br>
+          <input type="email" class="email" name="email" required><br><br>
+          
+          
+          <label for="phone">Phone (xxx xxx xxxx):</label><br><br>
+          <input type="tel" class="phone" name="phone" required ><br><br>
+          
+          
+          <label for="zipcode">Zip Code (6 digits):</label><br><br>
+          <input type="text" class="zipcode" name="zipcode" required ><br><br>
+          
+          
+          
+          
+          <label for="dob">Date of Birth (YYYY-MM-DD):</label><br><br>
+          <input type="date" class="dob" name="dob" required><br><br>
+          
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+    </center>
+
+  <script>
+    function validateUserInfoForm() {
+      let form = document.getElementById('Form');
+      let username = form.username.value;
+      let email = form.email.value;
+      let phone = form.phone.value;
+      let zipcode = form.zipcode.value;
+      let dob = form.dob.value;
+
+
+      let usernameRegex = /^[A-Za-z0-9]{6,12}$/;
+      let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      let phoneRegex = /^\d{3}\d{3}\d{4}$/;
+      let zipcodeRegex = /^\d{6}$/;
+      let dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+      
+      
+      if (!usernameRegex.test(username)) {
+        alert("Username should be alphanumeric with 6-12 characters.");
+        console.log(username);
+        
+        return false;
+      }
+
+      
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      
+      if (!phoneRegex.test(phone)) {
+        alert("Phone number format should be XXX-XXX-XXXX.");
+        return false;
+      }
+
+      
+      if (!zipcodeRegex.test(zipcode)) {
+        alert("Zip Code should contain exactly 6 digits.");
+        return false;
+      }
+
+      
+    
+      
+      if (!dobRegex.test(dob)) {
+        alert("Please enter a valid Date of Birth in the format YYYY-MM-DD.");
+        return false;
+      }
+
+      
+      return true;
+    }
+  </script>
+</body>
+</html>
